@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101114">
+  <link rel="icon" href="data:,">
+  <title>IRON CIRCUIT — Fight Night</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <canvas id="game" aria-label="Iron Circuit fighting game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Iron Circuit home"><span class="brand-mark">I</span><span>IRON<span class="brand-light"> CIRCUIT</span></span></a>
+      <div class="event-tag"><span class="live-dot"></span> FIGHT NIGHT <span class="event-divider">/</span> MAIN EVENT</div>
+      <button class="icon-btn sound-btn" id="soundBtn" aria-label="Toggle sound"><span id="soundIcon">♫</span></button>
+    </header>
+    <section class="hud" id="hud" aria-label="Fight status">
+      <div class="fighter-hud player-hud">
+        <div class="fighter-meta"><span class="fighter-name">MAYA <b>“VOLT”</b> REYES</span><span class="corner-label blue">BLUE CORNER</span></div>
+        <div class="bar-row"><span class="bar-label">HP</span><div class="bar-track health-track"><div class="health-fill player-health" id="playerHealth"></div></div><span class="bar-number" id="playerHealthText">100</span></div>
+        <div class="bar-row stamina-row"><span class="bar-label">ST</span><div class="bar-track stamina-track"><div class="stamina-fill player-stamina" id="playerStamina"></div></div><span class="bar-number muted" id="playerStaminaText">100</span></div>
+      </div>
+      <div class="round-panel"><span class="round-caption">ROUND</span><strong id="roundNumber">01</strong><span class="timer" id="timer">1:30</span></div>
+      <div class="fighter-hud enemy-hud">
+        <div class="fighter-meta"><span class="corner-label red">RED CORNER</span><span class="fighter-name">NIKO <b>“THE WALL”</b> PETROV</span></div>
+        <div class="bar-row"><span class="bar-number" id="enemyHealthText">100</span><div class="bar-track health-track"><div class="health-fill enemy-health" id="enemyHealth"></div></div><span class="bar-label">HP</span></div>
+        <div class="bar-row stamina-row"><span class="bar-number muted" id="enemyStaminaText">100</span><div class="bar-track stamina-track"><div class="stamina-fill enemy-stamina" id="enemyStamina"></div></div><span class="bar-label">ST</span></div>
+      </div>
+    </section>
+    <div class="combo-toast" id="comboToast"></div>
+    <div class="center-message" id="centerMessage"></div>
+    <footer class="bottom-ui">
+      <div class="tipline" id="tipline"><span class="tip-key">TIP</span> Mix up your strikes to break through a guard.</div>
+      <div class="controls-hint"><span><kbd>A</kbd><kbd>D</kbd> MOVE</span><i></i><span><kbd>W</kbd><kbd>S</kbd> FOOTWORK</span><i></i><span><kbd>SPACE</kbd> BLOCK</span></div>
+    </footer>
+    <div class="mobile-controls" id="mobileControls">
+      <div class="move-pad"><button data-action="up" aria-label="Move up">▲</button><div><button data-action="left" aria-label="Move left">◀</button><button data-action="down" aria-label="Move down">▼</button><button data-action="right" aria-label="Move right">▶</button></div></div>
+      <div class="action-pad"><button class="act punch" data-action="punch"><span>J</span><b>PUNCH</b></button><button class="act kick" data-action="kick"><span>K</span><b>KICK</b></button><button class="act special" data-action="special"><span>L</span><b>SPECIAL</b></button><button class="act block" data-action="block"><span>⛨</span><b>BLOCK</b></button></div>
+    </div>
+    <section class="overlay intro-overlay" id="introOverlay">
+      <div class="intro-card">
+        <div class="eyebrow"><span class="eyebrow-line"></span> THE CAGE IS YOURS <span class="eyebrow-line"></span></div>
+        <h1>IRON<br><em>CIRCUIT</em></h1>
+        <p class="intro-sub">ONE CAGE. TWO FIGHTERS. <strong>NO EASY ROUNDS.</strong></p>
+        <div class="matchup"><div><small>BLUE CORNER</small><strong>MAYA “VOLT” REYES</strong><span>STRIKER · 5–1</span></div><b class="versus">VS</b><div><small>RED CORNER</small><strong>NIKO “THE WALL” PETROV</strong><span>GRAPPLER · 8–2</span></div></div>
+        <button class="primary-btn" id="startBtn"><span>ENTER THE CAGE</span><b>→</b></button>
+        <div class="intro-controls"><span><kbd>J</kbd> PUNCH</span><span><kbd>K</kbd> KICK</span><span><kbd>L</kbd> SPECIAL</span><span><kbd>SPACE</kbd> BLOCK</span></div>
+        <p class="touch-note">Touch controls available on mobile</p>
+      </div>
+    </section>
+    <section class="overlay result-overlay hidden" id="resultOverlay">
+      <div class="result-card"><div class="eyebrow"><span class="eyebrow-line"></span> FIGHT NIGHT · MAIN EVENT <span class="eyebrow-line"></span></div><h2 id="resultTitle">KNOCKOUT</h2><p id="resultText">Maya “Volt” Reyes takes the win.</p><div class="result-stats"><div><b id="resultHits">0</b><span>STRIKES LANDED</span></div><div><b id="resultCombo">0</b><span>BEST COMBO</span></div><div><b id="resultTime">0:00</b><span>FIGHT TIME</span></div></div><button class="primary-btn" id="rematchBtn"><span>RUN IT BACK</span><b>↻</b></button></div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
